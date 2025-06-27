@@ -298,10 +298,10 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
         <Button 
           type="submit" 
           disabled={Boolean(
-            loading ||
-            !fromAccount ||
-            !toAccount ||
-            !amount ||
+            loading || 
+            !fromAccount || 
+            !toAccount || 
+            !amount || 
             !note ||
             (scheduledDate !== '' && new Date(scheduledDate) <= new Date())
           )}
