@@ -88,8 +88,8 @@ export default function AnalyticsDashboard() {
     const fetchData = async () => {
       try {
         const [accountsRes, transactionsRes] = await Promise.all([
-          fetch('/api/proxy/accounts'),
-          fetch('/api/proxy/transactions?limit=1000')
+          fetch('https://treasury-movement-simulator.onrender.com/api/accounts'),
+          fetch('https://treasury-movement-simulator.onrender.com/api/transactions?limit=1000')
         ]);
 
         const accounts = await accountsRes.json();

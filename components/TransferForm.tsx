@@ -98,7 +98,7 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/proxy/transactions', {
+      const response = await fetch('https://treasury-movement-simulator.onrender.com/api/transactions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

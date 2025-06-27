@@ -49,30 +49,29 @@ export default function Home() {
 
   const fetchAccounts = async () => {
     try {
-      const response = await fetch('/api/proxy/accounts');
+      const response = await fetch('https://treasury-movement-simulator.onrender.com/api/accounts');
       if (response.ok) {
         const data = await response.json();
         setAccounts(data);
       } else {
         console.error('Failed to fetch accounts:', response.status, response.statusText);
-        toast.error('Failed to load accounts');
       }
     } catch (error) {
       console.error('Failed to fetch accounts:', error);
-      toast.error('Failed to load accounts');
     }
   };
 
   const fetchTransactions = async () => {
     try {
-      const response = await fetch('/api/proxy/transactions?limit=100');
+      const response = await fetch('https://treasury-movement-simulator.onrender.com/api/transactions?limit=100');
       if (response.ok) {
         const data = await response.json();
         setTransactions(data.transactions || []);
+      } else {
+        console.error('Failed to fetch transactions:', response.status, response.statusText);
       }
     } catch (error) {
       console.error('Failed to fetch transactions:', error);
-      toast.error('Failed to load transactions');
     }
   };
 
