@@ -423,19 +423,6 @@ node -e "console.log('NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL)"
 - Not restarting the development server after changing `.env.local`
 - Using quotes around values in `.env.local`
 
-### **Production Deployment Issues**
-
-**Vercel Environment Variables:**
-1. Go to your Vercel project dashboard
-2. Navigate to Settings → Environment Variables
-3. Add all required variables
-4. Redeploy the application
-
-**Backend Environment Variables:**
-1. Set environment variables in your hosting platform (Railway, Render, etc.)
-2. Ensure `MONGODB_URI` is correctly formatted
-3. Check that `PORT` is set (most platforms set this automatically)
-
 ### **Database Issues**
 
 **MongoDB Atlas Connection:**
