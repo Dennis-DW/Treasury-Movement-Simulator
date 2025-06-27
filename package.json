@@ -8,6 +8,7 @@
     "dev:backend": "nodemon server/server.js",
     "build": "next build",
     "start": "next start",
+    "start:backend": "node server/server.js",
     "lint": "next lint",
     "seed": "node server/seedData.js",
     "check-mongo": "node server/checkMongo.js",

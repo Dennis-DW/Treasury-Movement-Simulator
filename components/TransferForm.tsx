@@ -25,7 +25,7 @@ interface TransferFormProps {
   onSuccess: () => void;
 }
 
-const EXCHANGE_RATES = {
+const EXCHANGE_RATES: { [key: string]: number } = {
   'USD_KES': 150.0,
   'USD_NGN': 800.0,
   'KES_USD': 1/150.0,
@@ -297,14 +297,14 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
 
         <Button 
           type="submit" 
-          disabled={
-            loading || 
-            !fromAccount || 
-            !toAccount || 
-            !amount || 
+          disabled={Boolean(
+            loading ||
+            !fromAccount ||
+            !toAccount ||
+            !amount ||
             !note ||
-            (scheduledDate && new Date(scheduledDate) <= new Date())
-          }
+            (scheduledDate !== '' && new Date(scheduledDate) <= new Date())
+          )}
           className="w-full"
           size="lg"
         >
