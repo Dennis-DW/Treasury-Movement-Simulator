@@ -302,10 +302,10 @@ export default function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-white">
-          <CardHeader className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white">
+        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-cyan-200 to-blue-400 text-white">
+          <CardHeader className="bg-gradient-to-r from-cyan-100 to-blue-300 text-white">
             <CardTitle className="text-white">Transaction Trends</CardTitle>
-            <CardDescription className="text-cyan-100">Daily transaction volume</CardDescription>
+            <CardDescription className="text-cyan-900">Daily transaction volume</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <ResponsiveContainer width="100%" height={300}>
@@ -333,7 +333,7 @@ export default function AnalyticsDashboard() {
         </Card>
 
         <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
-          <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white">
+          <CardHeader className="bg-gradient-to-r from-emerald-100 to-teal-600 text-white">
             <CardTitle className="text-white">Transaction Types</CardTitle>
             <CardDescription className="text-emerald-100">Distribution of transaction types</CardDescription>
           </CardHeader>
