@@ -4,7 +4,7 @@
   "framework": "nextjs",
   "installCommand": "npm install",
   "env": {
-    "NEXT_PUBLIC_API_URL": "@next_public_api_url"
+    "NEXT_PUBLIC_API_URL": "https://treasury-movement-simulator.onrender.com"
   },
   "rewrites": [
     {
