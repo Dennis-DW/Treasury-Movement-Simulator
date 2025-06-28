@@ -6,7 +6,41 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Search, Filter } from 'lucide-react';
-import { formatCurrency } from '@/lib/formatters';
+
+// Improved currency formatter that handles small values better
+function formatCurrency(amount: number, currency: string): string {
+  // Handle very small amounts (less than 0.01)
+  if (Math.abs(amount) < 0.01 && amount !== 0) {
+    return `${amount.toFixed(6)} ${currency}`;
+  }
+  
+  // Handle small amounts (less than 1)
+  if (Math.abs(amount) < 1) {
+    return `${amount.toFixed(4)} ${currency}`;
+  }
+  
+  // Standard formatting for larger amounts
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+}
+
+// Format exchange rate to prevent overflow
+function formatExchangeRate(rate: number): string {
+  if (rate < 0.0001) {
+    return rate.toExponential(2);
+  }
+  if (rate < 0.01) {
+    return rate.toFixed(6);
+  }
+  if (rate < 1) {
+    return rate.toFixed(4);
+  }
+  return rate.toFixed(2);
+}
 
 interface Transaction {
   _id: string;
@@ -76,9 +110,9 @@ export function TransactionHistory({ transactions, accounts }: TransactionHistor
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
           <Input
@@ -123,10 +157,10 @@ export function TransactionHistory({ transactions, accounts }: TransactionHistor
       </div>
 
       {/* Transaction List */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {filteredTransactions.length === 0 ? (
           <Card>
-            <CardContent className="p-8 text-center">
+            <CardContent className="p-6 sm:p-8 text-center">
               <div className="text-slate-400 mb-2">No transactions found</div>
               <div className="text-sm text-slate-500">
                 Try adjusting your search filters
@@ -136,54 +170,57 @@ export function TransactionHistory({ transactions, accounts }: TransactionHistor
         ) : (
           filteredTransactions.map((transaction) => (
             <Card key={transaction._id} className="hover:shadow-md transition-shadow">
-              <CardContent className="p-4">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="font-medium text-slate-900">
+              <CardContent className="p-4 sm:p-6">
+                <div className="space-y-4">
+                  {/* Header with accounts and status */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-sm">
+                        <span className="font-medium text-slate-900 truncate">
                           {transaction.fromAccount.name}
                         </span>
-                        <ArrowRight className="h-4 w-4 text-slate-400" />
-                        <span className="font-medium text-slate-900">
+                        <ArrowRight className="h-4 w-4 text-slate-400 hidden sm:block" />
+                        <span className="font-medium text-slate-900 truncate">
                           {transaction.toAccount.name}
                         </span>
                       </div>
-                      <Badge className={getStatusColor(transaction.status)}>
+                      <Badge className={`${getStatusColor(transaction.status)} text-xs`}>
                         {transaction.status}
                       </Badge>
                     </div>
                     
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-4">
-                        <div className="text-lg font-semibold text-slate-900">
-                          {formatCurrency(transaction.amount, transaction.currency)}
-                        </div>
-                        {transaction.convertedAmount && transaction.convertedCurrency && (
-                          <>
-                            <ArrowRight className="h-4 w-4 text-slate-400" />
-                            <div className="text-lg font-semibold text-blue-600">
-                              {formatCurrency(transaction.convertedAmount, transaction.convertedCurrency)}
-                            </div>
-                            <div className="text-sm text-slate-500">
-                              @ {transaction.exchangeRate.toFixed(4)}
-                            </div>
-                          </>
-                        )}
+                    <div className="text-right space-y-1">
+                      <div className="text-xs sm:text-sm font-mono text-slate-500 break-all">
+                        {transaction.reference}
                       </div>
-                      
-                      <div className="text-sm text-slate-600">
-                        {transaction.note}
+                      <div className="text-xs sm:text-sm text-slate-500">
+                        {new Date(transaction.createdAt).toLocaleString()}
                       </div>
                     </div>
                   </div>
 
-                  <div className="text-right space-y-1">
-                    <div className="text-sm font-mono text-slate-500">
-                      {transaction.reference}
+                  {/* Amount and conversion details */}
+                  <div className="space-y-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                      <div className="text-base sm:text-lg font-semibold text-slate-900 break-words">
+                        {formatCurrency(transaction.amount, transaction.currency)}
+                      </div>
+                      
+                      {transaction.convertedAmount && transaction.convertedCurrency && (
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                          <ArrowRight className="h-4 w-4 text-slate-400 hidden sm:block" />
+                          <div className="text-base sm:text-lg font-semibold text-blue-600 break-words">
+                            {formatCurrency(transaction.convertedAmount, transaction.convertedCurrency)}
+                          </div>
+                          <div className="text-xs sm:text-sm text-slate-500 font-mono">
+                            @ {formatExchangeRate(transaction.exchangeRate)}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <div className="text-sm text-slate-500">
-                      {new Date(transaction.createdAt).toLocaleString()}
+                    
+                    <div className="text-sm text-slate-600 break-words">
+                      {transaction.note}
                     </div>
                   </div>
                 </div>
