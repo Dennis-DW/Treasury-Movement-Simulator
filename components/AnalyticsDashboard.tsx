@@ -38,19 +38,30 @@ interface Transaction {
   toAccount: { name: string; currency: string };
 }
 
-// Beautiful gradient colors
-const GRADIENT_COLORS = [
-  'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-  'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-  'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-  'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-  'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-  'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-  'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
-  'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
+// Soft, eye-comfortable colors
+const SOFT_COLORS = [
+  '#8B9DC3', // Soft blue
+  '#B8A9C9', // Soft purple
+  '#A7C7E7', // Light blue
+  '#C1E1C1', // Soft green
+  '#F4C2C2', // Soft pink
+  '#E6D7C3', // Soft beige
+  '#D4E4F7', // Very light blue
+  '#F0E6FF', // Very light purple
+  '#E8F5E8', // Very light green
+  '#FFE6E6', // Very light pink
+  '#F5F5DC', // Cream
+  '#E6F3FF'  // Ice blue
 ];
 
-const CHART_COLORS = ['#667eea', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#a8edea'];
+const CHART_COLORS = [
+  '#8B9DC3', // Soft blue
+  '#B8A9C9', // Soft purple
+  '#A7C7E7', // Light blue
+  '#C1E1C1', // Soft green
+  '#F4C2C2', // Soft pink
+  '#E6D7C3'  // Soft beige
+];
 
 // Format money with K/M/B/T suffixes
 const formatMoney = (value: number) => {
@@ -185,14 +196,14 @@ export default function AnalyticsDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Summary Cards with Gradient Backgrounds */}
+      {/* Summary Cards with Soft Backgrounds */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200/30 to-blue-300/30 rounded-full -translate-y-16 translate-x-16"></div>
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-800">Total Balance</h3>
-              <div className="p-2 bg-white/50 rounded-lg">
+              <div className="p-2 bg-white/60 rounded-lg">
                 <DollarSign className="h-5 w-5 text-blue-600" />
               </div>
             </div>
@@ -201,12 +212,12 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 to-emerald-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 to-green-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-200/30 to-green-300/30 rounded-full -translate-y-16 translate-x-16"></div>
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-800">Total Transactions</h3>
-              <div className="p-2 bg-white/50 rounded-lg">
+              <div className="p-2 bg-white/60 rounded-lg">
                 <Activity className="h-5 w-5 text-green-600" />
               </div>
             </div>
@@ -215,12 +226,12 @@ export default function AnalyticsDashboard() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-violet-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-violet-500/20 rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200/30 to-purple-300/30 rounded-full -translate-y-16 translate-x-16"></div>
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-800">Active Accounts</h3>
-              <div className="p-2 bg-white/50 rounded-lg">
+              <div className="p-2 bg-white/60 rounded-lg">
                 <BarChart3 className="h-5 w-5 text-purple-600" />
               </div>
             </div>
@@ -233,7 +244,7 @@ export default function AnalyticsDashboard() {
       {/* Charts with Gradient Styling */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
-          <CardHeader className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+          <CardHeader className="bg-gradient-to-r from-blue-400 to-blue-600 text-white">
             <CardTitle className="text-white">Account Balances</CardTitle>
             <CardDescription className="text-blue-100">Current balance by account</CardDescription>
           </CardHeader>
@@ -258,15 +269,15 @@ export default function AnalyticsDashboard() {
                 <Line 
                   type="monotone" 
                   dataKey="balance" 
-                  stroke="url(#blueGradient)"
+                  stroke="url(#softBlueGradient)"
                   strokeWidth={3}
-                  dot={{ fill: '#667eea', strokeWidth: 2, r: 5 }}
-                  activeDot={{ r: 8, stroke: '#667eea', strokeWidth: 2 }}
+                  dot={{ fill: '#8B9DC3', strokeWidth: 2, r: 5 }}
+                  activeDot={{ r: 8, stroke: '#8B9DC3', strokeWidth: 2 }}
                 />
                 <defs>
-                  <linearGradient id="blueGradient" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#667eea" />
-                    <stop offset="100%" stopColor="#764ba2" />
+                  <linearGradient id="softBlueGradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#8B9DC3" />
+                    <stop offset="100%" stopColor="#A7C7E7" />
                   </linearGradient>
                 </defs>
               </LineChart>
@@ -275,9 +286,9 @@ export default function AnalyticsDashboard() {
         </Card>
 
         <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
-          <CardHeader className="bg-gradient-to-r from-pink-500 to-rose-600 text-white">
+          <CardHeader className="bg-gradient-to-r from-purple-400 to-purple-600 text-white">
             <CardTitle className="text-white">Currency Distribution</CardTitle>
-            <CardDescription className="text-pink-100">Balance distribution by currency</CardDescription>
+            <CardDescription className="text-purple-100">Balance distribution by currency</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <ResponsiveContainer width="100%" height={300}>
@@ -302,10 +313,10 @@ export default function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-cyan-200 to-blue-400 text-white">
-          <CardHeader className="bg-gradient-to-r from-cyan-100 to-blue-300 text-white">
+        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
+          <CardHeader className="bg-gradient-to-r from-green-400 to-green-600 text-white">
             <CardTitle className="text-white">Transaction Trends</CardTitle>
-            <CardDescription className="text-cyan-900">Daily transaction volume</CardDescription>
+            <CardDescription className="text-green-100">Daily transaction volume</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <ResponsiveContainer width="100%" height={300}>
@@ -315,16 +326,16 @@ export default function AnalyticsDashboard() {
                 <YAxis tickFormatter={formatMoney} fontSize={12} stroke="#6b7280" />
                 <Tooltip formatter={(value) => [`$${formatMoney(Number(value))}`, 'Total']} />
                 <defs>
-                  <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#4facfe" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#00f2fe" stopOpacity={0.1}/>
+                  <linearGradient id="softAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#C1E1C1" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#E8F5E8" stopOpacity={0.1}/>
                   </linearGradient>
                 </defs>
                 <Area 
                   type="monotone" 
                   dataKey="total" 
-                  stroke="url(#areaGradient)"
-                  fill="url(#areaGradient)"
+                  stroke="url(#softAreaGradient)"
+                  fill="url(#softAreaGradient)"
                   strokeWidth={2}
                 />
               </AreaChart>
@@ -332,10 +343,10 @@ export default function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white">
-          <CardHeader className="bg-gradient-to-r from-emerald-100 to-teal-600 text-white">
+        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
+          <CardHeader className="bg-gradient-to-r from-pink-400 to-pink-600 text-white">
             <CardTitle className="text-white">Transaction Types</CardTitle>
-            <CardDescription className="text-emerald-100">Distribution of transaction types</CardDescription>
+            <CardDescription className="text-pink-100">Distribution of transaction types</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <ResponsiveContainer width="100%" height={300}>
