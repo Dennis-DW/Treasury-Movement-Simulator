@@ -313,18 +313,26 @@ export default function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
-          <CardHeader className="bg-gradient-to-r from-green-400 to-green-600 text-white">
+        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-gray-800 to-gray-900">
+          <CardHeader className="bg-gradient-to-r from-gray-700 to-gray-800 text-white">
             <CardTitle className="text-white">Transaction Trends</CardTitle>
-            <CardDescription className="text-green-100">Daily transaction volume</CardDescription>
+            <CardDescription className="text-gray-300">Daily transaction volume</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={trendsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                <XAxis dataKey="date" fontSize={12} stroke="#6b7280" />
-                <YAxis tickFormatter={formatMoney} fontSize={12} stroke="#6b7280" />
-                <Tooltip formatter={(value) => [`$${formatMoney(Number(value))}`, 'Total']} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="date" fontSize={12} stroke="#9CA3AF" />
+                <YAxis tickFormatter={formatMoney} fontSize={12} stroke="#9CA3AF" />
+                <Tooltip 
+                  formatter={(value) => [`$${formatMoney(Number(value))}`, 'Total']}
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: '1px solid #374151',
+                    borderRadius: '8px',
+                    color: '#F9FAFB'
+                  }}
+                />
                 <defs>
                   <linearGradient id="softAreaGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#C1E1C1" stopOpacity={0.8}/>
