@@ -36,31 +36,31 @@ const getAccountTypeColor = (type: string) => {
 
 export function AccountsTable({ accounts }: AccountsTableProps) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
       {accounts.map((account) => (
-        <Card key={account._id} className="p-4 hover:shadow-md transition-shadow">
-          <div className="space-y-3">
+        <Card key={account._id} className="p-3 sm:p-4 hover:shadow-md transition-shadow">
+          <div className="space-y-2 sm:space-y-3">
             <div className="flex items-start justify-between">
-              <h3 className="font-semibold text-slate-900 leading-tight">
+              <h3 className="font-semibold text-slate-900 leading-tight text-sm sm:text-base">
                 {account.name}
               </h3>
-              <Badge className={getCurrencyColor(account.currency)}>
+              <Badge className={`${getCurrencyColor(account.currency)} text-xs`}>
                 {account.currency}
               </Badge>
             </div>
             
-            <div className="space-y-2">
-              <div className="text-2xl font-bold text-slate-900">
+            <div className="space-y-1 sm:space-y-2">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">
                 {formatCurrency(account.balance, account.currency)}
               </div>
-              <Badge variant="secondary" className={getAccountTypeColor(account.accountType)}>
+              <Badge variant="secondary" className={`${getAccountTypeColor(account.accountType)} text-xs`}>
                 {account.accountType}
               </Badge>
             </div>
 
-            <div className="pt-2 border-t border-slate-100">
-              <div className="text-sm text-slate-500">
-                Account ID: {account._id.slice(-8)}
+            <div className="pt-1 sm:pt-2 border-t border-slate-100">
+              <div className="text-xs sm:text-sm text-slate-500">
+                ID: {account._id.slice(-6)}
               </div>
             </div>
           </div>

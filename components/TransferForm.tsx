@@ -140,26 +140,26 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4 sm:space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6">
           {/* From Account */}
           <div className="space-y-2">
-            <Label htmlFor="from-account">From Account</Label>
+            <Label htmlFor="from-account" className="text-sm sm:text-base">From Account</Label>
             <Select value={fromAccount} onValueChange={setFromAccount}>
-              <SelectTrigger>
+              <SelectTrigger className="text-sm sm:text-base">
                 <SelectValue placeholder="Select source account" />
               </SelectTrigger>
               <SelectContent>
                 {accounts.map((account) => (
                   <SelectItem key={account._id} value={account._id}>
                     <div className="flex items-center justify-between w-full">
-                      <span>{account.name}</span>
-                      <div className="flex items-center gap-2 ml-2">
+                      <span className="text-sm sm:text-base">{account.name}</span>
+                      <div className="flex items-center gap-1 sm:gap-2 ml-2">
                         <Badge variant="outline" className="text-xs">
                           {account.currency}
                         </Badge>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-slate-500 hidden sm:inline">
                           {formatCurrency(account.balance, account.currency)}
                         </span>
                       </div>
@@ -169,7 +169,7 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
               </SelectContent>
             </Select>
             {fromAccountData && (
-              <div className="text-sm text-slate-600">
+              <div className="text-xs sm:text-sm text-slate-600">
                 Available: {formatCurrency(fromAccountData.balance, fromAccountData.currency)}
               </div>
             )}
@@ -177,9 +177,9 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
 
           {/* To Account */}
           <div className="space-y-2">
-            <Label htmlFor="to-account">To Account</Label>
+            <Label htmlFor="to-account" className="text-sm sm:text-base">To Account</Label>
             <Select value={toAccount} onValueChange={setToAccount}>
-              <SelectTrigger>
+              <SelectTrigger className="text-sm sm:text-base">
                 <SelectValue placeholder="Select destination account" />
               </SelectTrigger>
               <SelectContent>
@@ -188,7 +188,7 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
                   .map((account) => (
                     <SelectItem key={account._id} value={account._id}>
                       <div className="flex items-center justify-between w-full">
-                        <span>{account.name}</span>
+                        <span className="text-sm sm:text-base">{account.name}</span>
                         <Badge variant="outline" className="text-xs ml-2">
                           {account.currency}
                         </Badge>
@@ -202,7 +202,7 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
 
         {/* Transfer Amount */}
         <div className="space-y-2">
-          <Label htmlFor="amount">Transfer Amount</Label>
+          <Label htmlFor="amount" className="text-sm sm:text-base">Transfer Amount</Label>
           <Input
             id="amount"
             type="number"
@@ -211,10 +211,10 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount"
-            className="text-lg"
+            className="text-base sm:text-lg"
           />
           {fromAccountData && (
-            <div className="text-sm text-slate-600">
+            <div className="text-xs sm:text-sm text-slate-600">
               Currency: {fromAccountData.currency}
             </div>
           )}
@@ -223,18 +223,18 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
         {/* Conversion Preview */}
         {conversion && fromAccountData && toAccountData && (
           <Card className="bg-blue-50 border-blue-200">
-            <CardContent className="p-4">
+            <CardContent className="p-3 sm:p-4">
               <div className="flex items-center justify-between">
-                <div className="text-sm">
+                <div className="text-xs sm:text-sm">
                   <div className="font-medium text-blue-900">Transfer Preview</div>
                   <div className="text-blue-700">
                     {formatCurrency(parseFloat(amount || '0'), fromAccountData.currency)}
                   </div>
                 </div>
                 
-                <ArrowRight className="h-4 w-4 text-blue-600" />
+                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />
                 
-                <div className="text-sm text-right">
+                <div className="text-xs sm:text-sm text-right">
                   <div className="font-medium text-blue-900">Recipient Gets</div>
                   <div className="text-blue-700">
                     {formatCurrency(conversion.convertedAmount, toAccountData.currency)}
@@ -253,20 +253,21 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
 
         {/* Note */}
         <div className="space-y-2">
-          <Label htmlFor="note">Transfer Note</Label>
+          <Label htmlFor="note" className="text-sm sm:text-base">Transfer Note</Label>
           <Textarea
             id="note"
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="Enter a description for this transfer..."
             rows={3}
+            className="text-sm sm:text-base"
           />
         </div>
 
         {/* Scheduled Date */}
         <div className="space-y-2">
-          <Label htmlFor="scheduled-date" className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
+          <Label htmlFor="scheduled-date" className="flex items-center gap-2 text-sm sm:text-base">
+            <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
             Schedule Transfer (Optional)
           </Label>
           <Input
@@ -275,15 +276,15 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
             value={scheduledDate}
             onChange={(e) => setScheduledDate(e.target.value)}
             min={new Date().toISOString().slice(0, 16)}
-            className={scheduledDate && new Date(scheduledDate) <= new Date() ? 'border-red-300 focus:border-red-500' : ''}
+            className={`text-sm sm:text-base ${scheduledDate && new Date(scheduledDate) <= new Date() ? 'border-red-300 focus:border-red-500' : ''}`}
           />
           {scheduledDate && (
-            <div className={`flex items-center gap-2 text-sm ${
+            <div className={`flex items-center gap-2 text-xs sm:text-sm ${
               new Date(scheduledDate) <= new Date() 
                 ? 'text-red-600' 
                 : 'text-amber-600'
             }`}>
-              <AlertCircle className="h-4 w-4" />
+              <AlertCircle className="h-3 w-3 sm:h-4 sm:w-4" />
               {new Date(scheduledDate) <= new Date() 
                 ? 'Invalid date: Cannot schedule in the past'
                 : `This transfer will be scheduled for ${new Date(scheduledDate).toLocaleString()}`
@@ -305,7 +306,7 @@ export function TransferForm({ accounts, onSuccess }: TransferFormProps) {
             !note ||
             (scheduledDate !== '' && new Date(scheduledDate) <= new Date())
           )}
-          className="w-full"
+          className="w-full text-sm sm:text-base"
           size="lg"
         >
           {loading ? 'Processing...' : (scheduledDate ? 'Schedule Transfer' : 'Transfer Funds')}

@@ -195,74 +195,74 @@ export default function AnalyticsDashboard() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Summary Cards with Soft Backgrounds */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200/30 to-blue-300/30 rounded-full -translate-y-16 translate-x-16"></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-200/30 to-blue-300/30 rounded-full -translate-y-12 sm:-translate-y-16 translate-x-12 sm:translate-x-16"></div>
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Total Balance</h3>
-              <div className="p-2 bg-white/60 rounded-lg">
-                <DollarSign className="h-5 w-5 text-blue-600" />
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800">Total Balance</h3>
+              <div className="p-1.5 sm:p-2 bg-white/60 rounded-lg">
+                <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
               </div>
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">${formatMoney(totalBalance)}</div>
-            <p className="text-sm text-gray-600">Across all accounts</p>
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">${formatMoney(totalBalance)}</div>
+            <p className="text-xs sm:text-sm text-gray-600">Across all accounts</p>
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 to-green-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-200/30 to-green-300/30 rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 to-green-100 p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-green-200/30 to-green-300/30 rounded-full -translate-y-12 sm:-translate-y-16 translate-x-12 sm:translate-x-16"></div>
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Total Transactions</h3>
-              <div className="p-2 bg-white/60 rounded-lg">
-                <Activity className="h-5 w-5 text-green-600" />
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800">Total Transactions</h3>
+              <div className="p-1.5 sm:p-2 bg-white/60 rounded-lg">
+                <Activity className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
               </div>
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">{totalTransactions}</div>
-            <p className="text-sm text-gray-600">All time transactions</p>
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">{totalTransactions}</div>
+            <p className="text-xs sm:text-sm text-gray-600">All time transactions</p>
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200/30 to-purple-300/30 rounded-full -translate-y-16 translate-x-16"></div>
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 sm:col-span-2 lg:col-span-1">
+          <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-purple-200/30 to-purple-300/30 rounded-full -translate-y-12 sm:-translate-y-16 translate-x-12 sm:translate-x-16"></div>
           <div className="relative z-10">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Active Accounts</h3>
-              <div className="p-2 bg-white/60 rounded-lg">
-                <BarChart3 className="h-5 w-5 text-purple-600" />
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800">Active Accounts</h3>
+              <div className="p-1.5 sm:p-2 bg-white/60 rounded-lg">
+                <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600" />
               </div>
             </div>
-            <div className="text-3xl font-bold text-gray-900 mb-1">{data.accounts.length}</div>
-            <p className="text-sm text-gray-600">Total accounts</p>
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1">{data.accounts.length}</div>
+            <p className="text-xs sm:text-sm text-gray-600">Total accounts</p>
           </div>
         </div>
       </div>
 
       {/* Charts with Gradient Styling */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
         <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
-          <CardHeader className="bg-gradient-to-r from-blue-400 to-blue-600 text-white">
-            <CardTitle className="text-white">Account Balances</CardTitle>
-            <CardDescription className="text-blue-100">Current balance by account</CardDescription>
+          <CardHeader className="bg-gradient-to-r from-blue-400 to-blue-600 text-white pb-3 sm:pb-4">
+            <CardTitle className="text-white text-base sm:text-lg">Account Balances</CardTitle>
+            <CardDescription className="text-blue-100 text-xs sm:text-sm">Current balance by account</CardDescription>
           </CardHeader>
-          <CardContent className="p-6">
-            <ResponsiveContainer width="100%" height={300}>
+          <CardContent className="p-3 sm:p-6">
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
               <LineChart data={accountBalanceData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                 <XAxis 
                   dataKey="name" 
                   angle={-45} 
                   textAnchor="end" 
-                  height={80}
-                  fontSize={12}
+                  height={60}
+                  fontSize={10}
                   stroke="#6b7280"
                 />
                 <YAxis 
                   tickFormatter={formatMoney}
-                  fontSize={12}
+                  fontSize={10}
                   stroke="#6b7280"
                 />
                 <Tooltip content={<CustomTooltip />} />
@@ -271,8 +271,8 @@ export default function AnalyticsDashboard() {
                   dataKey="balance" 
                   stroke="url(#softBlueGradient)"
                   strokeWidth={3}
-                  dot={{ fill: '#8B9DC3', strokeWidth: 2, r: 5 }}
-                  activeDot={{ r: 8, stroke: '#8B9DC3', strokeWidth: 2 }}
+                  dot={{ fill: '#8B9DC3', strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, stroke: '#8B9DC3', strokeWidth: 2 }}
                 />
                 <defs>
                   <linearGradient id="softBlueGradient" x1="0" y1="0" x2="1" y2="0">
@@ -286,12 +286,12 @@ export default function AnalyticsDashboard() {
         </Card>
 
         <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
-          <CardHeader className="bg-gradient-to-r from-purple-400 to-purple-600 text-white">
-            <CardTitle className="text-white">Currency Distribution</CardTitle>
-            <CardDescription className="text-purple-100">Balance distribution by currency</CardDescription>
+          <CardHeader className="bg-gradient-to-r from-purple-400 to-purple-600 text-white pb-3 sm:pb-4">
+            <CardTitle className="text-white text-base sm:text-lg">Currency Distribution</CardTitle>
+            <CardDescription className="text-purple-100 text-xs sm:text-sm">Balance distribution by currency</CardDescription>
           </CardHeader>
-          <CardContent className="p-6">
-            <ResponsiveContainer width="100%" height={300}>
+          <CardContent className="p-3 sm:p-6">
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
               <PieChart>
                 <Pie
                   data={currencyData}
@@ -299,7 +299,7 @@ export default function AnalyticsDashboard() {
                   cy="50%"
                   labelLine={false}
                   label={({ name, value }) => `${name}: $${formatMoney(value)}`}
-                  outerRadius={80}
+                  outerRadius={60}
                   fill="#8884d8"
                   dataKey="value"
                 >
@@ -313,17 +313,17 @@ export default function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-gray-800 to-gray-900">
-          <CardHeader className="bg-gradient-to-r from-gray-700 to-gray-800 text-white">
-            <CardTitle className="text-white">Transaction Trends</CardTitle>
-            <CardDescription className="text-gray-300">Daily transaction volume</CardDescription>
+        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-gray-800 to-gray-900 lg:col-span-2">
+          <CardHeader className="bg-gradient-to-r from-gray-700 to-gray-800 text-white pb-3 sm:pb-4">
+            <CardTitle className="text-white text-base sm:text-lg">Transaction Trends</CardTitle>
+            <CardDescription className="text-gray-300 text-xs sm:text-sm">Daily transaction volume</CardDescription>
           </CardHeader>
-          <CardContent className="p-6">
-            <ResponsiveContainer width="100%" height={300}>
+          <CardContent className="p-3 sm:p-6">
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
               <AreaChart data={trendsData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="date" fontSize={12} stroke="#9CA3AF" />
-                <YAxis tickFormatter={formatMoney} fontSize={12} stroke="#9CA3AF" />
+                <XAxis dataKey="date" fontSize={10} stroke="#9CA3AF" />
+                <YAxis tickFormatter={formatMoney} fontSize={10} stroke="#9CA3AF" />
                 <Tooltip 
                   formatter={(value) => [`$${formatMoney(Number(value))}`, 'Total']}
                   contentStyle={{
@@ -351,13 +351,13 @@ export default function AnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50">
-          <CardHeader className="bg-gradient-to-r from-pink-400 to-pink-600 text-white">
-            <CardTitle className="text-white">Transaction Types</CardTitle>
-            <CardDescription className="text-pink-100">Distribution of transaction types</CardDescription>
+        <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50 lg:col-span-2">
+          <CardHeader className="bg-gradient-to-r from-pink-400 to-pink-600 text-white pb-3 sm:pb-4">
+            <CardTitle className="text-white text-base sm:text-lg">Transaction Types</CardTitle>
+            <CardDescription className="text-pink-100 text-xs sm:text-sm">Distribution of transaction types</CardDescription>
           </CardHeader>
-          <CardContent className="p-6">
-            <ResponsiveContainer width="100%" height={300}>
+          <CardContent className="p-3 sm:p-6">
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
               <PieChart>
                 <Pie
                   data={transactionTypeData}
@@ -365,7 +365,7 @@ export default function AnalyticsDashboard() {
                   cy="50%"
                   labelLine={false}
                   label={({ name, value }) => `${name}: ${value}`}
-                  outerRadius={80}
+                  outerRadius={60}
                   fill="#8884d8"
                   dataKey="value"
                 >

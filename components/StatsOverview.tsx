@@ -75,20 +75,20 @@ export function StatsOverview({ accounts, transactions }: StatsOverviewProps) {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
       {/* Currency Balances */}
       {Object.entries(balancesByCurrency).map(([currency, balance]) => (
         <Card key={currency} className="bg-gradient-to-br from-white to-slate-50">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="text-2xl">{getCurrencyIcon(currency)}</div>
+          <CardContent className="p-3 sm:p-4 lg:p-6">
+            <div className="flex items-center justify-between mb-2 sm:mb-4">
+              <div className="text-lg sm:text-xl lg:text-2xl">{getCurrencyIcon(currency)}</div>
               <Badge variant="outline" className="text-xs">
                 {currency}
               </Badge>
             </div>
             <div className="space-y-1">
-              <div className="text-sm text-slate-600">Total Balance</div>
-              <div className="text-2xl font-bold text-slate-900">
+              <div className="text-xs sm:text-sm text-slate-600">Total Balance</div>
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900">
                 {formatCurrency(balance, currency)}
               </div>
             </div>
@@ -98,14 +98,14 @@ export function StatsOverview({ accounts, transactions }: StatsOverviewProps) {
 
       {/* Recent Activity */}
       <Card className="bg-gradient-to-br from-blue-50 to-blue-100">
-        <CardContent className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <Activity className="h-6 w-6 text-blue-600" />
-            <Badge className="bg-blue-200 text-blue-800">24h</Badge>
+        <CardContent className="p-3 sm:p-4 lg:p-6">
+          <div className="flex items-center justify-between mb-2 sm:mb-4">
+            <Activity className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-blue-600" />
+            <Badge className="bg-blue-200 text-blue-800 text-xs">24h</Badge>
           </div>
           <div className="space-y-1">
-            <div className="text-sm text-blue-700">Recent Transactions</div>
-            <div className="text-2xl font-bold text-blue-900">
+            <div className="text-xs sm:text-sm text-blue-700">Recent Transactions</div>
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-900">
               {recentTxns}
             </div>
           </div>
